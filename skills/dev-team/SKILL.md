@@ -110,7 +110,12 @@ Format:
 <3-5 bullet summary of what all four roles agree on, and where tensions exist>
 ```
 
-The synthesis is written by you (not a subagent) after reading all four responses.
+The synthesis is written by you (not a subagent) after reading all four responses. Apply these guardrails:
+- Name tensions explicitly — do not average two conflicting positions into a diplomatic middle
+- If PM and QA conflict on scope, call out the conflict rather than splitting the difference
+- If three or more personas raise the same concern, flag it as a blocking issue, not a bullet
+
+If the topic emerged from a long conversation, distill it to the one-paragraph problem statement from Step 1 before passing it to subagents — do not paste the raw thread.
 
 ### 5. Offer follow-up
 
@@ -122,7 +127,7 @@ After presenting, offer:
 ## Persistence Rule
 
 Do not write session output to files by default. If the user explicitly asks to save the session:
-- save to `.stories/team-session-<date>.md`
+- save to `.stories/team-session-YYYY-MM-DD.md` (append `-2`, `-3` if a file for that date already exists)
 - or use `/save-session`
 
 ## Anti-Patterns
@@ -142,7 +147,7 @@ Do not write session output to files by default. If the user explicitly asks to 
 | Trigger | Feature proposal, planning | Go/no-go, tradeoff choice |
 | Tone | Constructive, role-aware | Skeptical, challenging |
 | Output | Multi-role perspectives + synthesis | Verdict with dissent |
-| Follow-up | story-lifecycle | ADR or direct action |
+| Follow-up | story-lifecycle | `knowledge-ops` or `/save-session` |
 
 Run `dev-team` to shape a proposal, then `council` if a specific decision within it needs adversarial pressure.
 
