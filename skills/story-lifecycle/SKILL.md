@@ -136,12 +136,23 @@ If no sub-command is given, run `status` first and ask which action to take.
 
 ## Workflow
 
+### 0. Bootstrap (run once per project)
+
+Before any sub-command writes to `.stories/`, check whether the directory exists:
+
+```bash
+test -d .stories || mkdir -p .stories/epics .stories/sprints
+```
+
+`create-epic` runs this check automatically. All other sub-commands assume `.stories/` exists and fail with a clear message if it does not: "Run `story-lifecycle create-epic` first to initialise the .stories/ layout."
+
 ### 1. create-epic
 
-1. Ask for the epic title and goal if not provided
-2. Derive a slug (lowercase, hyphen-separated)
-3. Write `.stories/epics/<slug>.md` using the epic template
-4. Print: `Epic created: .stories/epics/<slug>.md`
+1. Run the bootstrap check above
+2. Ask for the epic title and goal if not provided
+3. Derive a slug (lowercase, hyphen-separated)
+4. Write `.stories/epics/<slug>.md` using the epic template
+5. Print: `Epic created: .stories/epics/<slug>.md`
 
 ### 2. create-stories
 
@@ -160,7 +171,7 @@ When decomposing:
 
 1. Run `status` to show all `todo` stories with their points
 2. Ask for sprint goal and dates if not provided
-3. Ask the user to select stories by ID (or select automatically up to 13 points)
+3. Ask the user to select stories by ID (or select automatically to fill ~80% of last sprint's velocity; default to 8 points for a first sprint)
 4. Write `.stories/sprints/sprint-<n>.md`
 5. Update `Sprint` field in each selected story file
 
@@ -171,7 +182,9 @@ When decomposing:
 3. Summarize the story goal and acceptance criteria to the user
 4. Ask: "Ready to start? Any blockers?"
 5. Implement the story using the appropriate ECC agents:
-   - Code: delegate to language-specific reviewer after implementation
+   - Code: implement, then delegate review to the language-specific reviewer agent
+     (`python-reviewer`, `typescript-reviewer`, `go-reviewer`, `rust-reviewer`, etc.
+     — detect from project files; fall back to `ecc:code-reviewer` if unsure)
    - Tests: delegate to `tdd-workflow` or `tdd-guide`
    - Docs: update inline
 6. Walk through each acceptance criterion and verify it is met
