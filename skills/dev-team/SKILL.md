@@ -12,17 +12,20 @@ Run a multi-persona session where PM, Architect, Developer, and QA each respond 
 
 This is for **collaborative design and planning**, not adversarial challenge. If you need structured disagreement on a go/no-go decision, use `council` instead.
 
-## When to Use
+## When to Activate
 
+The user provides a **topic** — a feature description, proposal, story, or question. The skill runs all four personas in parallel as independent subagents, then presents their responses together.
+
+Use when:
 - Designing a new feature and wanting PM, Architect, Dev, and QA concerns surfaced at once
 - Reviewing a proposal before committing to implementation
 - Onboarding an initiative and wanting each role to define their first concerns
 - User says "what would the team think about this", "give me all perspectives", or "run this by the team"
 - Starting a story and wanting role-specific input before writing a single line of code
 
-## When NOT to Use
+### When NOT to Use
 
-| Instead | Use |
+| Condition | Use Instead |
 | --- | --- |
 | Ambiguous go/no-go decision with real tradeoffs | `council` |
 | Single-role deep-dive (e.g. architecture only) | `ecc:architect` |
@@ -37,10 +40,6 @@ This is for **collaborative design and planning**, not adversarial challenge. If
 | Architect | Arch | system design, scalability, technical risk, integration points |
 | Developer | Dev | implementation complexity, effort, edge cases, technical debt |
 | QA Engineer | QA | testability, acceptance criteria, failure modes, regression risk |
-
-## Activation
-
-The user provides a **topic** — a feature description, proposal, story, or question. The skill runs all four personas in parallel as independent subagents, then presents their responses together.
 
 ## Workflow
 
@@ -154,7 +153,7 @@ Run `dev-team` to shape a proposal, then `council` if a specific decision within
 ## Related Skills
 
 - `council` — adversarial decision-making under ambiguity
-- `project-context` — shared project brief all personas load
-- `story-lifecycle` — convert team session output into epics and stories
+- `project-context` — shared project brief all personas load *(companion skill, merged via sibling PR)*
+- `story-lifecycle` — convert team session output into epics and stories *(companion skill, merged via sibling PR)*
 - `ecc:architect` — deep single-role architecture design
 - `ecc:plan-prd` — product requirements document before the team session
