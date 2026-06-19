@@ -109,6 +109,7 @@ function buildFormatterCommand(formatter: Formatter, filePath: string, cwd?: str
   // command string (and Windows CI); all formatter CLIs accept `/` on Windows.
   const normalizedPath = path.normalize(filePath).split(path.sep).join("/")
 
+
   // Build command based on formatter and platform
   const commands: Record<Formatter, string> = {
     biome: `npx @biomejs/biome format --write ${normalizedPath}`,
