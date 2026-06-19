@@ -12,16 +12,16 @@ A self-contained, file-based delivery loop: **Epic → Stories → Sprint → Im
 
 No external PM tool required. All state lives in the repo under `.stories/`.
 
-## When to Use
+## When to Activate
 
 - Starting a feature initiative and wanting structured delivery without a Jira/Linear/Taiga setup
 - Breaking down a PRD or architecture doc into implementable units
 - User says "create epics and stories", "plan this sprint", "what's next to build", or "implement the next story"
 - Onboarding a project that tracks work in markdown files
 
-## When NOT to Use
+### When NOT to Use
 
-| Instead | Use |
+| Condition | Use Instead |
 | --- | --- |
 | Team already uses Taiga | `project-flow-ops` (GitHub/Linear) or Taiga MCP directly |
 | One-off task with no breakdown needed | just do it |
@@ -188,7 +188,7 @@ When decomposing:
    - Tests: delegate to `tdd-workflow` or `tdd-guide`
    - Docs: update inline
 6. Walk through each acceptance criterion and verify it is met
-7. Mark story status as `done` and update the epic's stories table
+7. Mark story status as `done`, update the epic's stories table, and update the matching row in `.stories/sprints/sprint-<n>.md`'s stories table to `done`
 
 ### 5. status
 
